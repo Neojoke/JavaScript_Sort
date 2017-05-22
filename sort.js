@@ -226,9 +226,9 @@ simple_selectSort([1, 5, 0, 10, 8, 20]);
  * 从arr[s...length]是需要调整的堆，arr[s]是不满足堆定义的结点
  * 调整arr[s],使其成为小顶堆.即对s和其左右结点进行比较，找到最小的，与s位置交换
  * 
- * @param {any} arr 是待调整的堆数组
- * @param {any} s 是待调整的数组元素的位置
- * @param {any} length length是数组的长度
+ * @param {Array} arr 是待调整的堆数组
+ * @param {int} s 是待调整的数组元素的位置
+ * @param {int} length length是数组的长度
  * @returns 
  */
 function HeapAdjust(arr, s, length) {
@@ -247,13 +247,21 @@ function HeapAdjust(arr, s, length) {
             //如果不再需要调整，则满足堆特性，可以停止循环
             break;
         }
-        arr[s] = tmp
+        arr[s] = tmp //当前待调整的结点放值需要调整堆顶的值
     }
     // console.log(arr)
     return arr
 }
 
+/**
+ * 初始化进行调整
+ * 将arr[0...length-1]建成堆
+ * @param {Array} arr 
+ * @param {int} length 
+ * @returns 
+ */
 function BuildingHeap(arr, length) {
+    //最后一个有孩子的节点的位置 i=  (length -1) / 2 
     for (var i = (length - 1) / 2; i >= 0; --i) {
         arr = HeapAdjust(arr, i, length)
     }
