@@ -67,10 +67,9 @@ function ShellInsertSort(array, dk) {
 
 function ShellSort(array) {
     var sortArray = array;
-    var dk = array.length / 2;
+    var dk = parseInt(array.length / 2);
     while (dk >= 1) {
         sortArray = ShellInsertSort(sortArray, dk);
-        console.log(sortArray);
         dk = parseInt(dk / 2);
     }
     console.log("希尔排序");
@@ -131,7 +130,7 @@ function simple_selectSort(array) {
     var n = array.length;
     var i, j, min, max, temp
         //不超过n/2趟排序
-    for (i = 1; i <= n / 2; i++) {
+    for (i = 1; i <= parseInt(n / 2); i++) {
         min = i;
         max = i;
         //从i以后到n-i,寻找最大与最小所在位置
@@ -239,7 +238,7 @@ function HeapAdjust(arr, s, length) {
         if (child + 1 < length && arr[child] > arr[child + 1]) { //如果右孩子大于左孩子(找到比当前待调整结点大的孩子结点)  
             child = child + 1; //设置当前最小子树结点为右子树结点
         }
-        if (arr[s] < arr[child]) { //如果较小的子结点大于父结点
+        if (arr[s] > arr[child]) { //如果较小的子结点大于父结点
             arr[s] = arr[child] //将较大的节点代替父节点
             s = child //重置s, 即待调整的下一个结点的位置,此时要调整下个破坏了子树平衡的结点的子树
             child = 2 * s + 1 //修改下次要调整的结点的子树为2*s+1
@@ -260,9 +259,13 @@ function HeapAdjust(arr, s, length) {
  * @param {int} length 
  * @returns 
  */
+/*
+    对于一个无序数组，构建成堆，从最后一个元素开始，假设数组元素个数为n,则最后一个元素的父结点为n/2取整，如果数组长度为i，则最后一个元素为i-1,父节点为i-1/2取整
+    对以i-1/2为根节点的子树进行堆构建，再向前一个节点，继续构建堆
+*/
 function BuildingHeap(arr, length) {
-    //最后一个有孩子的节点的位置 i=  (length -1) / 2 
-    for (var i = (length - 1) / 2; i >= 0; --i) {
+    //最后一个结点的父结点位置 i=  (length -1) / 2 
+    for (var i = parseInt((length - 1) / 2); i >= 0; --i) {
         arr = HeapAdjust(arr, i, length)
     }
     return arr
@@ -270,7 +273,7 @@ function BuildingHeap(arr, length) {
 
 function HeapSort(arr) {
     var length = arr.length
-    arr = BuildingHeap(arr)
+    arr = BuildingHeap(arr, arr.length)
     for (var i = length - 1; i > 0; --i) {
         var temp = arr[i];
         arr[i] = arr[0];
