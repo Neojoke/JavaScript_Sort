@@ -6,6 +6,22 @@
     "configurations": [
 
         {
+            "name": "Python",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": true,
+            "pythonPath": "/Users/Neo/.pyenv/versions/3.5.2/bin/python3.5",
+            "program": "${file}",
+            "cwd": "${workspaceRoot}",
+            "env": {},
+            "envFile": "${workspaceRoot}/.env",
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput"
+            ]
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "启动程序",
